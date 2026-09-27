@@ -1,0 +1,19 @@
+{
+  "name": "sauro-vicini-sito",
+  "scripts": {
+    "build": "node scripts/build-blog.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sauro-vicini/sauro-vicini.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sauro-vicini/sauro-vicini.github.io/issues"
+  },
+  "homepage": "https://github.com/sauro-vicini/sauro-vicini.github.io#readme",
+  "dependencies": {
+    "marked": "^14.1.4"
+  },
+  "private": true,
+  "type": "module"
+}

@@ -23,6 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Genera il blog
+        run: |
+          npm ci
+          npm run build
+
       - name: Controlla i secrets
         env:
           SERVER: ${{ secrets.ARUBA_FTP_SERVER }}
@@ -54,3 +63,8 @@ jobs:
             **/.git*/**
             .github/**
             README.md
+            _posts/**
+            scripts/**
+            node_modules/**
+            package.json
+            package-lock.json

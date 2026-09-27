@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Blog di Sauro Vicini</title>
+    <link>https://sauro-vicini.github.io/blog/</link>
+    <description>Appunti su intelligenza artificiale, dati e sanità digitale in Emilia-Romagna.</description>
+    <language>it</language>
+    <item>
+      <title>Come uso Claude nel lavoro di tutti i giorni</title>
+      <link>https://sauro-vicini.github.io/blog/come-uso-claude-nel-lavoro/</link>
+      <guid>https://sauro-vicini.github.io/blog/come-uso-claude-nel-lavoro/</guid>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Articoli, calendario eventi, slide e anche questo sito. Cosa ho automatizzato con un assistente AI, e cosa resta a me.</description>
+    </item>
+    <item>
+      <title>Come si collegano le attività su AI e salute in Emilia-Romagna</title>
+      <link>https://sauro-vicini.github.io/blog/come-si-collegano-ai-e-salute/</link>
+      <guid>https://sauro-vicini.github.io/blog/come-si-collegano-ai-e-salute/</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Infrastrutture, ricerca, filiere e clinica non sono progetti separati. Ho provato a disegnare come si passano il testimone.</description>
+    </item>
+  </channel>
+</rss>

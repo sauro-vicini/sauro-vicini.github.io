@@ -8,268 +8,7 @@
   <meta name="color-scheme" content="light dark">
   <link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="icons/phosphor.css">
-  <!--
-    Design read (taste-skill): pagina personale professionale per partner istituzionali,
-    imprese e ricercatori del digital health; linguaggio pulito e affidabile.
-    Dial: DESIGN_VARIANCE 6 / MOTION_INTENSITY 4 / VISUAL_DENSITY 3.
-    Raggi: superfici 14px, elementi interattivi a pillola.
-  -->
-  <style>
-    @font-face {
-      font-family: "Geist";
-      src: url("fonts/Geist-Variable.woff2") format("woff2");
-      font-weight: 100 900;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "Geist";
-      src: url("fonts/Geist-Italic-Variable.woff2") format("woff2");
-      font-weight: 100 900;
-      font-style: italic;
-      font-display: swap;
-    }
-
-    :root {
-      --bg: #f6f7f9;
-      --surface: #eceef2;
-      --surface-2: #e2e5eb;
-      --text: #14161b;
-      --muted: #545a66;
-      --line: #d5d9e0;
-      --accent: #2447d6;
-      --accent-ink: #f6f7f9;
-      --accent-soft: #dfe5fb;
-      --shadow: 0 18px 40px -24px rgb(36 71 214 / 0.35);
-      --radius: 14px;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-      --max: 1200px;
-      --gutter: clamp(16px, 4vw, 40px);
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f1115;
-        --surface: #171a20;
-        --surface-2: #1f232b;
-        --text: #eceef2;
-        --muted: #a3a9b5;
-        --line: #2a2f38;
-        --accent: #8ea2ff;
-        --accent-ink: #0f1115;
-        --accent-soft: #1c2447;
-        --shadow: 0 18px 40px -24px rgb(0 0 0 / 0.6);
-      }
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
-      font-size: 17px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; }
-    h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.025em; }
-    p { margin: 0; }
-    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-    .visually-hidden {
-      position: absolute; width: 1px; height: 1px; overflow: hidden;
-      clip: rect(0 0 0 0); white-space: nowrap;
-    }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-
-    /* ---------- Nav ---------- */
-    .nav {
-      position: sticky; top: 0; z-index: 10;
-      background: color-mix(in srgb, var(--bg) 82%, transparent);
-      backdrop-filter: blur(12px) saturate(140%);
-      -webkit-backdrop-filter: blur(12px) saturate(140%);
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
-    }
-    .nav .wrap { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
-    .nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
-    .nav ul a { text-decoration: none; color: var(--muted); font-size: 15px; transition: color .2s; }
-    .nav ul a:hover { color: var(--text); }
-    @media (max-width: 640px) { .nav ul { gap: 18px; } .nav ul li.hide-sm { display: none; } }
-
-    /* ---------- Buttons (pill) ---------- */
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 13px 22px; border-radius: 999px;
-      font: inherit; font-size: 16px; font-weight: 500; white-space: nowrap;
-      text-decoration: none; cursor: pointer; border: 1px solid transparent;
-      transition: transform .25s var(--ease), background-color .25s, border-color .25s, box-shadow .25s;
-    }
-    .btn:active { transform: scale(0.98) translateY(1px); }
-    .btn-primary { background: var(--accent); color: var(--accent-ink); box-shadow: var(--shadow); }
-    .btn-primary:hover { transform: translateY(-1px); }
-    .btn-ghost { border-color: var(--line); color: var(--text); background: transparent; }
-    .btn-ghost:hover { border-color: var(--muted); }
-    .btn .ph { font-size: 18px; }
-
-    /* ---------- Hero (asymmetric split) ---------- */
-    .hero { padding: clamp(48px, 8vw, 96px) 0 clamp(64px, 9vw, 112px); }
-    .hero .wrap {
-      display: grid; grid-template-columns: 1.25fr 0.75fr; gap: clamp(32px, 6vw, 88px); align-items: center;
-    }
-    .eyebrow {
-      font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
-    }
-    .hero h1 {
-      margin-top: 20px;
-      font-size: clamp(2.4rem, 5.2vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.035em;
-      max-width: 16ch;
-    }
-    .hero h1 em { font-style: italic; font-weight: 500; color: var(--accent); }
-    .hero .lead { margin-top: 24px; font-size: clamp(1.05rem, 1.4vw, 1.2rem); color: var(--muted); max-width: 46ch; }
-    .hero .actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
-
-    .portrait {
-      position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden;
-      background:
-        radial-gradient(120% 80% at 85% 10%, var(--accent-soft), transparent 60%),
-        var(--surface);
-      border: 1px solid var(--line);
-    }
-    .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .portrait .monogram {
-      position: absolute; inset: 0; display: grid; place-items: center;
-      font-size: clamp(4rem, 9vw, 7rem); font-weight: 600; letter-spacing: -0.06em; color: var(--accent);
-    }
-    @media (max-width: 860px) {
-      .hero .wrap { grid-template-columns: 1fr; }
-      .portrait { max-width: 360px; aspect-ratio: 1 / 1; }
-    }
-
-    /* ---------- Section base ---------- */
-    section { padding: clamp(72px, 10vw, 128px) 0; }
-    .section-title { font-size: clamp(1.9rem, 3.4vw, 2.75rem); line-height: 1.1; max-width: 22ch; }
-    .section-intro { margin-top: 16px; color: var(--muted); max-width: 60ch; }
-
-    /* ---------- Temi (bento, 4 celle) ---------- */
-    .bento {
-      margin-top: 48px;
-      display: grid; gap: 16px;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-areas:
-        "ai ai ai ai vc vc"
-        "ai ai ai ai eu eu"
-        "ev ev ev ev ev ev";
-    }
-    .cell {
-      border-radius: var(--radius); padding: 28px; background: var(--surface);
-      display: flex; flex-direction: column; gap: 12px; min-height: 200px;
-      transition: transform .4s var(--ease);
-    }
-    .cell:hover { transform: translateY(-3px); }
-    .cell .ph { font-size: 28px; color: var(--accent); }
-    .cell h3 { font-size: 1.3rem; line-height: 1.25; }
-    .cell p { color: var(--muted); font-size: 16px; }
-    .cell-ai { grid-area: ai; background: var(--accent); color: var(--accent-ink); justify-content: flex-end; padding: 36px; }
-    .cell-ai .ph, .cell-ai p { color: color-mix(in srgb, var(--accent-ink) 82%, transparent); }
-    .cell-ai h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); max-width: 16ch; }
-    .cell-ai .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-    .cell-ai .tags span {
-      font-size: 14px; padding: 6px 12px; border-radius: 999px;
-      border: 1px solid color-mix(in srgb, var(--accent-ink) 40%, transparent);
-    }
-    .cell-vc { grid-area: vc; }
-    .cell-eu { grid-area: eu; background: var(--surface-2); }
-    .cell-ev {
-      grid-area: ev; min-height: 0;
-      display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
-      background:
-        repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in srgb, var(--accent) 7%, transparent) 14px 15px),
-        var(--surface);
-    }
-    .cell-ev p { max-width: 70ch; }
-    @media (max-width: 860px) {
-      .bento { grid-template-columns: 1fr; grid-template-areas: "ai" "vc" "eu" "ev"; }
-      .cell-ai { min-height: 300px; }
-      .cell-ev { grid-template-columns: 1fr; }
-    }
-
-    /* ---------- Progetto (split, immagine a sinistra) ---------- */
-    .project .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-    .deck {
-      position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden;
-      border: 1px solid var(--line); background: var(--surface-2); box-shadow: var(--shadow);
-    }
-    .deck img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .deck .fallback {
-      position: absolute; inset: 0; padding: clamp(20px, 3vw, 36px);
-      display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;
-      background: linear-gradient(160deg, var(--accent-soft), var(--surface-2) 70%);
-    }
-    .deck .fallback strong { font-size: clamp(1.3rem, 2.4vw, 1.9rem); line-height: 1.15; letter-spacing: -0.03em; max-width: 18ch; }
-    .deck .fallback span { color: var(--muted); font-size: 15px; }
-    .views { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; }
-    .views div { border-top: 1px solid var(--line); padding-top: 14px; }
-    .views h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
-    .views p { color: var(--muted); font-size: 15px; margin-top: 4px; }
-    .project .actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
-    @media (max-width: 860px) {
-      .project .wrap { grid-template-columns: 1fr; }
-      .views { grid-template-columns: 1fr; }
-    }
-
-    /* ---------- Metodo (lista verticale) ---------- */
-    .method .list { margin-top: 48px; border-top: 1px solid var(--line); }
-    .method .row {
-      display: grid; grid-template-columns: 56px minmax(0, 18rem) 1fr; gap: 24px; align-items: baseline;
-      padding: 28px 0;
-    }
-    .method .row + .row { border-top: 1px solid color-mix(in srgb, var(--line) 55%, transparent); }
-    .method .row .ph { font-size: 26px; color: var(--accent); align-self: start; }
-    .method .row h3 { font-size: 1.2rem; }
-    .method .row p { color: var(--muted); max-width: 58ch; }
-    @media (max-width: 760px) {
-      .method .row { grid-template-columns: 40px 1fr; gap: 8px 16px; }
-      .method .row p { grid-column: 2; }
-    }
-
-    /* ---------- Contatti (centrato, chiusura) ---------- */
-    .contact { text-align: center; }
-    .contact .panel {
-      border-radius: var(--radius); background: var(--surface);
-      padding: clamp(48px, 8vw, 96px) var(--gutter);
-    }
-    .contact h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.08; max-width: 18ch; margin: 0 auto; }
-    .contact p { margin: 20px auto 0; color: var(--muted); max-width: 48ch; }
-    .contact .actions { margin-top: 36px; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    .copy-status { display: block; min-height: 1.6em; margin-top: 14px; font-size: 14px; color: var(--muted); }
-
-    footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
-    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    footer a { text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
-    footer a:hover { color: var(--text); }
-
-    /* ---------- Motion (MOTION_INTENSITY 4) ---------- */
-    @media (prefers-reduced-motion: no-preference) {
-      .hero [data-in] {
-        opacity: 0; transform: translateY(16px);
-        animation: rise .9s var(--ease) forwards;
-        animation-delay: calc(var(--i, 0) * 90ms + 80ms);
-      }
-      @keyframes rise { to { opacity: 1; transform: none; } }
-      .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
-      .js .reveal.is-in { opacity: 1; transform: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .btn, .cell { transition: none; }
-      .cell:hover, .btn-primary:hover { transform: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
   <script>document.documentElement.classList.add("js");</script>
@@ -279,9 +18,10 @@
       <a class="brand" href="#top">Sauro Vicini</a>
       <nav aria-label="Principale">
         <ul>
-          <li><a href="#temi">Temi</a></li>
+          <li class="hide-sm"><a href="#temi">Temi</a></li>
           <li class="hide-sm"><a href="#progetto">Progetto</a></li>
           <li class="hide-sm"><a href="#metodo">Metodo</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
           <li><a href="#contatti">Contatti</a></li>
         </ul>
       </nav>
@@ -399,6 +139,29 @@
       </div>
     </section>
 
+    <!-- BLOG:START -->
+    <section id="blog" class="home-blog" aria-labelledby="blog-title">
+      <div class="wrap">
+        <h2 class="section-title reveal" id="blog-title">Dal blog</h2>
+        <div class="home-blog-grid">
+          <a class="post-featured reveal" href="blog/come-uso-claude-nel-lavoro/index.html">
+            <p class="post-meta"><time datetime="2026-09-26">26 settembre 2026</time><span aria-hidden="true">·</span><span>1 min di lettura</span></p>
+            <h3>Come uso Claude nel lavoro di tutti i giorni</h3>
+            <p>Articoli, calendario eventi, slide e anche questo sito. Cosa ho automatizzato con un assistente AI, e cosa resta a me.</p>
+            <span class="read-more">Leggi l'articolo <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+          </a>
+          <div class="home-blog-side reveal">
+            <a class="home-post" href="blog/come-si-collegano-ai-e-salute/index.html">
+              <p class="post-meta"><time datetime="2026-09-20">20 settembre 2026</time></p>
+              <h3>Come si collegano le attività su AI e salute in Emilia-Romagna</h3>
+            </a>
+            <a class="btn btn-ghost" href="blog/index.html">Tutti gli articoli</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- BLOG:END -->
+
     <!-- CONTATTI -->
     <section id="contatti" class="contact" aria-labelledby="contatti-title">
       <div class="wrap">
@@ -427,40 +190,6 @@
     </div>
   </footer>
 
-  <script>
-    // Reveal on scroll: IntersectionObserver, nessun listener di scroll.
-    (function () {
-      var els = document.querySelectorAll(".reveal");
-      if (!("IntersectionObserver" in window)) {
-        els.forEach(function (el) { el.classList.add("is-in"); });
-        return;
-      }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-        });
-      }, { rootMargin: "0px 0px -10% 0px", threshold: 0.15 });
-      els.forEach(function (el) { io.observe(el); });
-    })();
-
-    // Copia indirizzo email, con stato di successo e di errore.
-    (function () {
-      var btn = document.getElementById("copy-email");
-      var status = document.getElementById("copy-status");
-      var email = document.querySelector("[data-email]").getAttribute("data-email");
-      btn.addEventListener("click", function () {
-        var done = function () {
-          btn.querySelector(".ph").className = "ph ph-check";
-          status.textContent = "Indirizzo copiato: " + email;
-        };
-        var fail = function () { status.textContent = "Copia non riuscita. L'indirizzo è " + email; };
-        if (navigator.clipboard && window.isSecureContext) {
-          navigator.clipboard.writeText(email).then(done, fail);
-        } else {
-          fail();
-        }
-      });
-    })();
-  </script>
+  <script src="js/site.js" defer></script>
 </body>
 </html>

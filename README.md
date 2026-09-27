@@ -28,3 +28,26 @@ Settings > Secrets and variables > Actions:
 - Variable: `ARUBA_FTP_DIR` = `/www.tuodominio.it/`
 
 I dati FTP sono nel pannello Aruba (Hosting Linux > Gestione FTP).
+
+## Blog
+
+Gli articoli sono file Markdown in `_posts/`, con nome `AAAA-MM-GG-titolo-breve.md`:
+
+```markdown
+---
+title: Titolo dell'articolo
+date: 2026-10-01
+summary: Una o due frasi che compaiono nell'elenco e nel feed.
+---
+
+Testo in Markdown...
+```
+
+Aggiungi `draft: true` nel blocco iniziale per tenere un articolo nascosto.
+
+- **Da GitHub:** crea o modifica il file in `_posts/` e salva. Il workflow "Aggiorna blog"
+  rigenera le pagine; il deploy su Aruba le rigenera da solo prima di caricarle.
+- **In locale:** `npm install` (una volta), poi `npm run build`.
+
+La build crea `blog/`, `feed.xml` e aggiorna la sezione "Dal blog" della home
+(tra i marcatori `<!-- BLOG:START -->` e `<!-- BLOG:END -->`).
