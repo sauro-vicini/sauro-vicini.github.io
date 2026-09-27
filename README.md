@@ -17,3 +17,14 @@ Aprire `index.html` nel browser, Pubblicata con GitHub Pages su https://sauro-vi
 - Font Geist e icone Phosphor ospitati in locale (`fonts/`, `icons/`), senza CDN.
 - Un solo colore d'accento (cobalto), modalità chiara e scura automatiche.
 - Animazioni leggere, disattivate con `prefers-reduced-motion`.
+
+## Deploy su hosting Aruba
+
+Il workflow `.github/workflows/deploy-aruba.yml` carica il sito via FTPS a ogni push su `main`
+(o a mano da Actions > Deploy su Aruba > Run workflow). Configurazione una tantum in
+Settings > Secrets and variables > Actions:
+
+- Secrets: `ARUBA_FTP_SERVER` (es. `ftp.tuodominio.it`), `ARUBA_FTP_USERNAME`, `ARUBA_FTP_PASSWORD`
+- Variable: `ARUBA_FTP_DIR` = `/www.tuodominio.it/`
+
+I dati FTP sono nel pannello Aruba (Hosting Linux > Gestione FTP).
